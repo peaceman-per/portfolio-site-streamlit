@@ -20,6 +20,7 @@ This project is built using:
 ---
 
 ## Repo Structure
+```
 personal_site/
 ├── portfolio_app.py          # Main Streamlit app
 ├── requirements.txt          # Dependencies (for Streamlit Cloud)
@@ -35,3 +36,4 @@ personal_site/
 │   └── cv.pdf                # Downloadable CV
 ├── data/                     # Any small datasets for demos
 └── README.md                 # Repo description (shows on GitHub)
+```
