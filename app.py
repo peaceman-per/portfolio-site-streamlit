@@ -9,7 +9,7 @@ import seaborn as sns
 st.set_page_config(page_title="William | Data Scientist", layout="wide")
 
 # -- SIDEBAR NAVIGATION --
-st.sidebar.image("background.jpg", width=150)
+st.sidebar.image("assets/images/background.jpg", width=150)
 st.sidebar.title("William")
 st.sidebar.markdown("MSc Data Science · University of London")
 st.sidebar.markdown("[GitHub](https://github.com/peaceman-per) · [Kaggle](https://kaggle.com/peaceman1) · [LinkedIn](https://linkedin.com/in/ws-r)")
@@ -46,7 +46,7 @@ if page == "🏠 About Me":
 
     # guard against missing CV file
     try:
-        st.download_button("📥 Download my CV", data=open("cv.pdf", "rb"), file_name="CV.pdf")
+        st.download_button("📥 Download my CV", data=open("assets/cv.pdf", "rb"), file_name="CV.pdf")
     except FileNotFoundError:
         st.warning("CV file not found. Please check back later.")
 
