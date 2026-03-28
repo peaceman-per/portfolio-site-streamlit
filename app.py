@@ -4,14 +4,12 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
 
 # -- CONFIG --
 st.set_page_config(page_title="William | Data Scientist", layout="wide")
 
 # -- SIDEBAR NAVIGATION --
-st.sidebar.image("photo.jpg", width=150)
+st.sidebar.image("background.jpg", width=150)
 st.sidebar.title("William")
 st.sidebar.markdown("MSc Data Science · University of London")
 st.sidebar.markdown("[GitHub](https://github.com/peaceman-per) · [Kaggle](https://kaggle.com/peaceman1) · [LinkedIn](https://linkedin.com/in/ws-r)")
@@ -24,6 +22,12 @@ page = st.sidebar.radio("Navigate", [
     "📜 CV & Certifications",
     "📬 Contact"
 ])
+
+
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
 
 # -- ABOUT ME --
 if page == "🏠 About Me":
@@ -39,7 +43,13 @@ if page == "🏠 About Me":
     When I'm not coding, I'm swimming, climbing mountains, or listening
     to music on my hi-fi.
     """)
-    st.download_button("📥 Download my CV", data=open("cv.pdf", "rb"), file_name="CV.pdf")
+
+    # guard against missing CV file
+    try:
+        st.download_button("📥 Download my CV", data=open("cv.pdf", "rb"), file_name="CV.pdf")
+    except FileNotFoundError:
+        st.warning("CV file not found. Please check back later.")
+
 
 # -- INTERACTIVE NEURAL NETWORK EXPLORER --
 elif page == "🧠 Neural Network Explorer":
@@ -65,11 +75,11 @@ elif page == "🧠 Neural Network Explorer":
 
     # Build and train
     model = Sequential([
-        Dense(neurons, input_shape=(2,), activation=activation),
+        Input(shape=(2,)),
+        Dense(neurons, activation=activation),
         Dense(neurons, activation=activation),
         Dense(1, activation='sigmoid')
-    ])
-    from tensorflow.keras.optimizers import Adam
+        ])
     model.compile(optimizer=Adam(learning_rate=learning_rate),
                   loss='binary_crossentropy', metrics=['accuracy'])
     history = model.fit(X, y, epochs=epochs, verbose=0, validation_split=0.2)
