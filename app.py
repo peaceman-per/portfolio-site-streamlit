@@ -10,16 +10,16 @@ st.set_page_config(page_title="William | Data Scientist", layout="wide")
 
 # -- SIDEBAR NAVIGATION --
 st.sidebar.image("assets/images/background.jpg", width=150)
-st.sidebar.title("William")
+st.sidebar.title("Will")
 st.sidebar.markdown("MSc Data Science · University of London")
 st.sidebar.markdown("[GitHub](https://github.com/peaceman-per) · [Kaggle](https://kaggle.com/peaceman1) · [LinkedIn](https://linkedin.com/in/ws-r)")
 
-page = st.sidebar.radio("Navigate", [
+page = st.sidebar.selectbox("Navigate", [
     "🏠 About Me",
-    "🧠 Neural Network Explorer",
     "📂 Projects",
-    "🏅 Kaggle Competitions",
     "📜 CV & Certifications",
+    "🏅 Kaggle Competitions",
+    "🧠 Neural Network Explorer",
     "📬 Contact"
 ])
 
@@ -31,8 +31,8 @@ from tensorflow.keras.optimizers import Adam
 
 # -- ABOUT ME --
 if page == "🏠 About Me":
-    st.title("Hi, I'm William")
-    st.write("""
+    st.title("Hi, I'm Will")
+    """
     I'm a data scientist with a Masters in Data Science (University of London)
     and a BSc in Maths, Stats & Data Science (University of Bath).
 
@@ -42,7 +42,7 @@ if page == "🏠 About Me":
 
     When I'm not coding, I'm swimming, climbing mountains, or listening
     to music on my hi-fi.
-    """)
+    """
 
     # guard against missing CV file
     try:
@@ -113,15 +113,21 @@ elif page == "📂 Projects":
     projects = [
         {
             "title": "🏆 CIFAR-10: 96.15% with Ensembled Transfer ResNets",
-            "desc": "3-model ensemble using transfer learning on non-linear ResNet architectures with data augmentation.",
+            "desc": "GPU accelerated exploration of advanced NN architectures on CIFAR-10, achieving 96.15% accuracy with an ensemble of transfer-learned ResNets.",
             "tags": ["Deep Learning", "Keras", "Transfer Learning", "Computer Vision"],
-            "github": "https://github.com/yourname/cifar10-resnet"
+            "github": "https://github.com/peaceman-per/S3-Neural-Networks-Coursework-2"
         },
         {
             "title": "📊 Big Data Pipeline with Spark & Hadoop",
-            "desc": "Distributed data processing pipeline using MapReduce and Spark for large-scale analytics.",
+            "desc": "Distributed data processing pipeline on Lena hadoop cluster using spark, handling 10GB+ datasets to extract insights and build scalable ML models.",
             "tags": ["Big Data", "Spark", "Hadoop", "Distributed Computing"],
-            "github": "https://github.com/yourname/spark-pipeline"
+            "github": "https://github.com/peaceman-per/BDA2_Coursework_2"
+        },
+        {
+            "title": "My streamlit personal site (this!)",
+            "desc": "Personal website built with Streamlit to showcase projects, CV, and certifications.",
+            "tags": ["Streamlit", "Python", "Web Development"],
+            "github": "https://github.com/peaceman-per/portfolio-site-streamlit"
         },
         # Add more projects...
     ]
@@ -133,4 +139,21 @@ elif page == "📂 Projects":
             st.download_button(f"📥 Download Report", data=b"placeholder", file_name="report.pdf",
                                key=p["title"])
 
+
+elif page == "📜 CV & Certifications":
+    st.title("CV & Certifications")
+    st.write("Download my CV and view my certifications below.")
+    try:
+        st.download_button("📥 Download CV", data=open("assets/cv.pdf", "rb"), file_name="CV.pdf")
+    except FileNotFoundError:
+        st.warning("CV file not found. Please check back later.")
+
+    st.subheader("Certifications")
+    certifications = [
+        {"name": "Deep Learning Specialization (Coursera)", "link": "https://coursera.org/verify/DEEP-LEARNING-CERT"},
+        {"name": "TensorFlow Developer Certificate", "link": "https://www.tensorflow.org/certificate"},
+        # Add more certifications...
+    ]
+    for cert in certifications:
+        st.markdown(f"- [{cert['name']}]({cert['link']})")
 # -- Add Kaggle, CV, Contact pages similarly --
