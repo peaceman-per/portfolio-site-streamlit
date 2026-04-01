@@ -25,9 +25,9 @@ page = st.sidebar.selectbox("Navigate", [
 
 
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Input
-from tensorflow.keras.optimizers import Adam
+from keras.models import Sequential
+from keras.layers import Dense, Input
+from keras.optimizers import Adam
 
 # -- ABOUT ME --
 if page == "🏠 About Me":
