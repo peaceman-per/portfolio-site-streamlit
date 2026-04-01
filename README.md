@@ -37,3 +37,9 @@ personal_site/
 ├── data/                     # Any small datasets for demos
 └── README.md                 # Repo description (shows on GitHub)
 ```
+
+### Starting the app using streamlit community cloud
+1. Push your code to GitHub.
+2. Go to [Streamlit Community Cloud](https://streamlit.io/cloud) and sign in with your GitHub account.
+3. Click "New app", select your repository and branch, and specify `portfolio_app.py` as the main file.
+4. Click "Deploy" and your personal site will be live! You can share the URL with others to showcase your projects and skills.
